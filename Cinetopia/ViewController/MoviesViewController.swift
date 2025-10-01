@@ -9,8 +9,10 @@ import UIKit
 
 class MoviesViewController: UIViewController {
     
+    private var movies: [Movie] = []
     private var filteredMovies: [Movie] = []
     private var isSearchActive: Bool = false
+    private let movieService = MovieService()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -37,6 +39,17 @@ class MoviesViewController: UIViewController {
         setupNavigation()
         addSubviews()
         setupConstraints()
+        fetchMovies()
+    }
+    
+    private func fetchMovies(){
+        movieService.getMovies{ movies in
+            guard let movies else { return }
+            DispatchQueue.main.async{
+                self.movies = movies
+                self.tableView.reloadData()
+            }
+        }
     }
     
     private func addSubviews(){
