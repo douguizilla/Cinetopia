@@ -40,7 +40,7 @@ class MovieTableViewCell: UITableViewCell {
     func configureCell(with movie: Movie) {
         movieTitleLabel.text = movie.title
         moviePosterImageView.image = UIImage(named: movie.image)
-        movieReleaseDateLabel.text = "Lançamento: \(movie.releaseData)"
+        movieReleaseDateLabel.text = "Lançamento: \(movie.releaseDate)"
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
